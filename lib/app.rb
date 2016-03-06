@@ -11,4 +11,10 @@ class App < Sinatra::Base
     @issues = Issue.all
     haml :"issues/index"
   end
+
+  get "/issues/new" do
+    @issue = Issue.new
+    haml :"issues/new"
+    
+  end
 end
