@@ -17,4 +17,11 @@ class App < Sinatra::Base
     haml :"issues/new"
     
   end
+
+  post "/issues" do
+    @issue = Issue.new params[:issue]
+    if @issue.save
+      redirect "/"
+    end
+  end
 end
