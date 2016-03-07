@@ -4,4 +4,6 @@ class Issue
 
 field :name, type: String
 field :description, type: String
+
+embeds_many :comments
 end
