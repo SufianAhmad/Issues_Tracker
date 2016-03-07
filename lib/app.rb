@@ -3,6 +3,7 @@ require_relative "models/issue"
 class App < Sinatra::Base
   enable :sessions
   register Sinatra::Flash
+  register Sinatra::Partial
   get "/" do
     redirect "/issues"
   end
@@ -23,5 +24,14 @@ class App < Sinatra::Base
     if @issue.save
       redirect "/"
     end
+  end
+
+  get "/issues/:id/edit" do 
+    @issue = Issue.find params[:id]
+    haml :"issues/edit"
+  end
+
+  put "/issues/:id" do
+    
   end
 end

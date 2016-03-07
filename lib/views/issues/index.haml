@@ -4,12 +4,14 @@
   %thead
     %tr
       %th Title
+      %th ID
       %th Description
       %th Created at
   -@issues.each do |issue|
     %tr
       %td
         %a(href="/issues/#{issue.id}/edit")=issue.name
+      %td=issue.id
       %td=issue.description
       %td=issue.id.generation_time.ago_in_words
   -unless @issues.any?
