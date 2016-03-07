@@ -38,9 +38,14 @@ class App < Sinatra::Base
     end
   end
 
-  get "/issues/:id/edit" do 
+  get "/issues/:id/edit" do
     @issue = Issue.find params[:id]
     haml :"issues/edit"
+  end
+
+  get "/issues/:id/single" do
+    @issue = Issue.find params[:id]
+    haml :"issues/single"
   end
 
   put "/issues/:id" do
