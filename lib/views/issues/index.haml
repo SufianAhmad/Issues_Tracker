@@ -19,4 +19,11 @@
       %tr
         %th
           There is no issue
-          %a.btn.btn-primery(href="/issues/new") Create New    
+          %a.btn.btn-primery(href="/issues/new") Create New
+
+
+.text-center
+  %ul.pagination
+    -(1..@pagination.last_page).each do |page|
+      %li{class: [@pagination.current_page + 1 == page ? "active": ""]}  
+        %a{href: "?page=#{page}" }=page
