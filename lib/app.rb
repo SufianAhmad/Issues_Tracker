@@ -1,4 +1,5 @@
 require_relative "models/issue"
+require_relative "models/comment"
 
 class App < Sinatra::Base
   enable :sessions
@@ -52,6 +53,15 @@ class App < Sinatra::Base
     @issue = Issue.find params[:id]
     -if @issue.update_attributes params[:issue]
       redirect "/"
+    end
+  end
+
+  post "/issues/:id/comments" do
+    @issue = Issue.find params[:id]
+    if @issue.comments.create params[:comment]
+      redirect "/issues/#{params[:id]}/single"
+    else
+      render :"issue/single"      
     end
   end
 end
