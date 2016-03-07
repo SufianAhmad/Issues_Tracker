@@ -4,6 +4,7 @@ class App < Sinatra::Base
   enable :sessions
   register Sinatra::Flash
   register Sinatra::Partial
+  use Rack::MethodOverride
   get "/" do
     redirect "/issues"
   end
@@ -32,6 +33,9 @@ class App < Sinatra::Base
   end
 
   put "/issues/:id" do
-    
+    @issue = Issue.find params[:id]
+    -if @issue.update_attributes params[:issue]
+      redirect "/"
+    end
   end
 end
