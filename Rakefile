@@ -1,7 +1,7 @@
-require "rake/testtask"
-
-Rake::TestTask.new do |t|
-  t.pattern = "test/**/*_test.rb"
-  t.libs << "test"
+require "rubygems"
+require_relative "mongodb"
+Mongoid.load!("mongodb.yml", :development)
+task :db do
+  @db = Mongoid.database
+  puts @db
 end
-task default: :test
